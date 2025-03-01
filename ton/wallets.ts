@@ -4,7 +4,7 @@ import type { OpenedContract } from '@ton/ton';
 import { Address, WalletContractV5R1 } from '@ton/ton';
 
 import { MAIN_WALLET_MNEMONIC } from '../../config';
-import {logError, logInfo} from '../logs';
+import { logError, logInfo } from '../logs';
 import withCacheAsync from '../withCacheAsync';
 import { toBase64Address } from './address';
 import { tonClient } from './client';
