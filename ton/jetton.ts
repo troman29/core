@@ -1,8 +1,8 @@
 import { Address } from '@ton/core';
 
 import withCacheAsync from '../util/withCacheAsync';
-import { JettonMinter } from './contracts/JettonMinter';
-import { JettonWallet } from './contracts/JettonWallet';
+import { JettonMinter } from './contracts/Jetton/JettonMaster';
+import { JettonWallet } from './contracts/Jetton/JettonWallet';
 import { toBase64Address } from './address';
 import { tonClient } from './client';
 

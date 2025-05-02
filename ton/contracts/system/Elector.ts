@@ -2,7 +2,8 @@
 import type { Cell, Contract, ContractProvider, TupleReader } from '@ton/core';
 import { Address } from '@ton/core';
 
-import { bigint2buff, buff2bigint, LispList } from './utils';
+import { bigint2buff, buff2bigint } from '../../../util/bigint';
+import { LispList } from './utils';
 
 export class Participant {
   constructor(readonly id: bigint,

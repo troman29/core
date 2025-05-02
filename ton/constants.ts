@@ -16,3 +16,5 @@ export const TONCOIN = {
 } as const;
 
 export const ONE_TON = 1000000000n;
+
+export const ELECTOR_ADDRESS = 'Ef8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0vF';

@@ -7,3 +7,22 @@ type NoneToVoidFunction = () => void;
 type ValueOf<T> = T[keyof T];
 type Maybe<T> = T | null;
 type MaybePromise<T> = Promise<T> | T;
+
+type BaseTransaction = {
+  hash: string;
+  timestamp: number;
+  amount: bigint;
+  fromAddress: string;
+  toAddress: string;
+  comment?: string;
+  fee: bigint;
+  isIncoming: boolean;
+};
+
+type TonTransaction = BaseTransaction & {
+  normalizedAddress: string;
+  externalMsgHash?: string;
+  msgHash: string;
+  opCode?: number;
+  exitCode?: number;
+};
