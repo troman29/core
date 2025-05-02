@@ -62,3 +62,11 @@ export function bigintMin(value0: bigint, value1: bigint) {
 export function bigintMultiplePercent(value: bigint, percent: number) {
   return (value * fromDecimal(percent / 100)) / ONE_TON;
 }
+
+export function buff2bigint(buff: Buffer): bigint {
+  return BigInt(`0x${buff.toString('hex')}`);
+}
+
+export function bigint2buff(num: bigint): Buffer {
+  return Buffer.from(num.toString(16), 'hex');
+}
