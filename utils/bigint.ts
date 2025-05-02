@@ -1,4 +1,4 @@
-import { ONE_TON } from './ton/constants';
+import { ONE_TON } from '../ton/constants';
 import { fromDecimal } from './decimals';
 import { randomBytes } from './random';
 

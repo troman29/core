@@ -1,6 +1,6 @@
 import { Big } from 'big.js';
 
-import { TONCOIN } from './ton/constants';
+import { TONCOIN } from '../ton/constants';
 
 Big.RM = 0; // RoundDown
 Big.NE = -100000; // Disable exponential form

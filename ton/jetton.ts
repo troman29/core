@@ -2,7 +2,7 @@ import { Address } from '@ton/core';
 
 import { JettonMinter } from './contracts/JettonMinter';
 import { JettonWallet } from './contracts/JettonWallet';
-import withCacheAsync from '../withCacheAsync';
+import withCacheAsync from '../utils/withCacheAsync';
 import { toBase64Address } from './address';
 import { tonClient } from './client';
 

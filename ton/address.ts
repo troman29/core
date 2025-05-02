@@ -1,6 +1,6 @@
 import { Address } from '@ton/core';
 
-import withCache from '../withCache';
+import withCache from '../utils/withCache';
 
 const DEFAULT_SHIFT = 5;
 const FILLER = '...';

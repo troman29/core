@@ -1,6 +1,6 @@
 import { captureException } from '@sentry/node';
 
-import { DEBUG } from '../config';
+import { DEBUG } from '../../config';
 
 export function logError(scope: string, error: Error | string | any, ...args: any[]) {
   // eslint-disable-next-line no-console
