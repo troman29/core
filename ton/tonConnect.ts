@@ -6,9 +6,9 @@ import { Buffer } from 'buffer';
 import { sign } from 'tweetnacl';
 
 import { TON_CONNECT_DOMAINS } from '../../config';
-import { DAY } from '../utils/constants';
-import { buildCollectionByKey, pick } from '../utils/iteratees';
-import { redis } from '../utils/redis';
+import { DAY } from '../util/constants';
+import { buildCollectionByKey, pick } from '../util/iteratees';
+import { redis } from '../util/redis';
 import { getWalletPublicKey } from './wallets';
 import { tryParsePublicKey } from './walletsData';
 

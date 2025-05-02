@@ -13,8 +13,8 @@ import {
 } from '@ton/ton';
 import { Buffer } from 'buffer';
 
+import { logError } from '../util/logs';
 import { WalletContractV4R1 } from './contracts/WalletContractV4R1';
-import { logError } from '../utils/logs';
 
 const knownWallets = [
   { contract: WalletContractV1R1, loadData: loadWalletV1Data },

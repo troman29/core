@@ -42,7 +42,7 @@ export async function fetchWithRetry(url: string | URL, init?: RequestInit, opti
   } = options ?? {};
 
   let message = 'Unknown error.';
-  let statusCode: number | undefined;
+  let statusCode: number = 0;
 
   for (let i = 1; i <= retries; i++) {
     try {
@@ -77,7 +77,7 @@ export async function fetchWithRetry(url: string | URL, init?: RequestInit, opti
     }
   }
 
-  throw new HttpError(message);
+  throw new HttpError(message, statusCode);
 }
 
 export async function fetchWithTimeout(url: string | URL, init?: RequestInit, timeout = TIMEOUT) {
