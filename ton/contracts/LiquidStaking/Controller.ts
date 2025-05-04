@@ -71,7 +71,7 @@ export class Controller implements Contract {
     provider: ContractProvider,
     via: Sender,
     value:bigint = Conf.electorOpValue,
-    query_id: bigint | number = 0
+    query_id: bigint | number = 0,
   ) {
     await provider.internal(via, {
       body: Controller.recoverStakeMessage(query_id),
