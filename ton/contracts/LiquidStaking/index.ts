@@ -1,7 +1,3 @@
-import { PayoutCollection } from './PayoutNFTCollection';
-import { Pool } from './Pool';
-
-export default {
-  PayoutCollection,
-  Pool,
-};
+export { PayoutCollection } from './PayoutNFTCollection';
+export { Pool } from './Pool';
+export { Controller } from './Controller';
