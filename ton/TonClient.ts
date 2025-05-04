@@ -40,6 +40,10 @@ export class TonClient extends TonCoreClient {
     return this.callRpc('getAddressInformation', { address });
   }
 
+  async getConfigParam(configId: number): Promise<string> {
+    return (await this.callRpc('getConfigParam', { config_id: configId })).config.bytes;
+  }
+
   callRpc(method: string, params: any): Promise<any> {
     return this.sendRequest(this.parameters.endpoint, {
       id: 1, jsonrpc: '2.0', method, params,
