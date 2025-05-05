@@ -1,3 +1,4 @@
+import type { Sender } from '@ton/core';
 import type { KeyPair } from '@ton/crypto';
 import { mnemonicToPrivateKey } from '@ton/crypto';
 import type { OpenedContract } from '@ton/ton';
@@ -16,6 +17,7 @@ const bySlug: Record<WalletSlug, {
   keyPair: Promise<KeyPair>;
   wallet?: OpenedContract<WalletContractV5R1>;
   address?: string;
+  sender?: Sender;
 }> = {
   main: {
     keyPair: mnemonicToPrivateKey(MAIN_WALLET_MNEMONIC.split(' ')),
@@ -45,13 +47,15 @@ export async function getWallet(slug: WalletSlug) {
     });
     config.wallet = tonClient.open(contract);
     config.address = toBase64Address(config.wallet.address, false);
+    config.sender = config.wallet.sender(keyPair.secretKey);
 
     logInfo(`Wallet ${slug} was configured ${config.address}`);
   }
 
   return {
     wallet: config.wallet,
-    address: config.address,
-    secretKey: keyPair.secretKey,
+    address: config.address!,
+    sender: config.sender!,
+    secretKey: keyPair.secretKey!,
   };
 }

@@ -80,6 +80,18 @@ export class Controller implements Contract {
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  async sendReturnUnusedLoan(provider: ContractProvider, via: Sender, value: bigint = toNano('0.5')) {
+    await provider.internal(via, {
+      value,
+      sendMode: SendMode.PAY_GAS_SEPARATELY,
+      body: beginCell()
+        .storeUint(LiquidOpCode.controller.return_unused_loan, 32) // op
+        .storeUint(1, 64) // query id
+        .endCell(),
+    });
+  }
+
   // Get methods
   // eslint-disable-next-line class-methods-use-this
   async getControllerData(provider: ContractProvider) {

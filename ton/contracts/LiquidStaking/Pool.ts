@@ -24,10 +24,12 @@ export type PoolConfig = {
   vote_keeper_code: Cell;
 };
 
-type RoundData = { borrowers: Cell | null; roundId: number;
+type RoundData = {
+  borrowers: Cell | null; roundId: number;
   activeBorrowers: bigint; borrowed: bigint;
   expected: bigint; returned: bigint;
-  profit: bigint; };
+  profit: bigint;
+};
 
 type State = typeof PoolState.NORMAL | typeof PoolState.REPAYMENT_ONLY;
 
