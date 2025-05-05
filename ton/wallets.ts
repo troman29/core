@@ -2,7 +2,7 @@ import type { Sender } from '@ton/core';
 import type { KeyPair } from '@ton/crypto';
 import { mnemonicToPrivateKey } from '@ton/crypto';
 import type { OpenedContract } from '@ton/ton';
-import { Address, WalletContractV5R1 } from '@ton/ton';
+import { Address, WalletContractV4, WalletContractV5R1 } from '@ton/ton';
 
 import { MAIN_WALLET_MNEMONIC } from '../../config';
 import { logError, logInfo } from '../util/logs';
@@ -11,16 +11,22 @@ import { toBase64Address } from './address';
 import { tonClient } from './client';
 import { WORKCHAIN } from './constants';
 
-export type WalletSlug = 'main';
+export type WalletSlug = 'mainW5' | 'mainV4';
 
 const bySlug: Record<WalletSlug, {
   keyPair: Promise<KeyPair>;
-  wallet?: OpenedContract<WalletContractV5R1>;
+  wallet?: OpenedContract<WalletContractV5R1 | WalletContractV4>;
   address?: string;
   sender?: Sender;
+  version?: 'v4R2' | 'W5';
 }> = {
-  main: {
+  mainW5: {
     keyPair: mnemonicToPrivateKey(MAIN_WALLET_MNEMONIC.split(' ')),
+    version: 'W5',
+  },
+  mainV4: {
+    keyPair: mnemonicToPrivateKey(MAIN_WALLET_MNEMONIC.split(' ')),
+    version: 'v4R2',
   },
 };
 
@@ -41,7 +47,8 @@ export async function getWallet(slug: WalletSlug) {
   const keyPair = await config.keyPair;
 
   if (!config.wallet) {
-    const contract = WalletContractV5R1.create({
+    const walletClass = config.version === 'v4R2' ? WalletContractV4 : WalletContractV5R1;
+    const contract = walletClass.create({
       publicKey: Buffer.from(keyPair.publicKey),
       workchain: WORKCHAIN,
     });
