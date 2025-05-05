@@ -9,6 +9,14 @@ export function pick<T, K extends keyof T>(object: T, keys: K[]) {
   }, {} as Pick<T, K>);
 }
 
+export function omit<T extends object, K extends keyof T>(object: T, keys: K[]): Omit<T, K> {
+  const stringKeys = new Set(keys.map(String));
+  const savedKeys = Object.keys(object)
+    .filter((key) => !stringKeys.has(key)) as Array<Exclude<keyof T, K>>;
+
+  return pick(object, savedKeys);
+}
+
 export function buildCollectionByKey<T extends AnyLiteral>(collection: T[], key: keyof T) {
   return collection.reduce((byKey: CollectionByKey<T>, member: T) => {
     // eslint-disable-next-line no-param-reassign
