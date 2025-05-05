@@ -1,15 +1,15 @@
 import { ALERTS_CHAT_ID, BOT_TOKEN } from '../../config';
 import { handleFetchErrors } from './fetch';
-import { logError } from './logs';
+import { logError, logInfo } from './logs';
 import { pause } from './schedulers';
 
 const INTERVAL = 3100;
 
 let sentAt: Date | undefined;
 
-async function sendTelegramNotification(message: string, data?: object, isMarkdown = true) {
+async function sendTelegramNotification(message: string, data?: object, isMarkdown?: boolean) {
   // eslint-disable-next-line no-console
-  console.info('[sendTelegramNotification]', message, data);
+  logInfo('[sendTelegramNotification]', message, data);
 
   if (data) {
     if (isMarkdown) {
