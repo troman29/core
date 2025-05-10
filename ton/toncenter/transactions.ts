@@ -63,17 +63,11 @@ export function parseRawTransaction(
   } = rawTx;
 
   const timestamp = now as number * 1000;
-  const isIncoming = !!rawTx.in_msg.source && !rawTx.out_msgs.length;
   const inMsgHash = rawTx.in_msg.hash;
-  const msgs: TransactionMessage[] = isIncoming ? [rawTx.in_msg] : rawTx.out_msgs;
-
-  if (!msgs.length) return [];
-
-  const oneMsgFee = BigInt(totalFees) / BigInt(msgs.length);
-
+  const outMsgFee = rawTx.out_msgs.length ? BigInt(totalFees) / BigInt(rawTx.out_msgs.length) : 0n;
   const transactions: TonTransaction[] = [];
 
-  msgs.forEach((msg, i) => {
+  function parseMessage(msg: TransactionMessage, type: 'in' | 'out', index: number = 0) {
     const {
       source,
       destination,
@@ -88,13 +82,14 @@ export function parseRawTransaction(
       return;
     }
 
+    const isIncoming = type === 'in';
     const fromAddress = addressBook[source!].user_friendly;
     const toAddress = addressBook[destination!].user_friendly;
     const normalizedAddress = toBase64Address(isIncoming ? source! : destination!, true);
-    const fee = oneMsgFee + BigInt(fwdFee ?? 0);
+    const fee = isIncoming ? 0n : outMsgFee + BigInt(fwdFee ?? 0);
 
     const tx: TonTransaction = omitUndefined({
-      txId: msgs.length > 1 ? `${hash}:${i}` : hash,
+      index,
       hash,
       timestamp,
       isIncoming,
@@ -110,7 +105,15 @@ export function parseRawTransaction(
     });
 
     transactions.push(tx);
-  });
+  }
+
+  if (rawTx.in_msg.source) {
+    parseMessage(rawTx.in_msg, 'in');
+  }
+
+  for (const [i, outMsg] of rawTx.out_msgs.entries()) {
+    parseMessage(outMsg, 'out', i);
+  }
 
   return transactions;
 }

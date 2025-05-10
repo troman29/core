@@ -40,6 +40,6 @@ type ValidatorCycle = {
   };
 };
 
-export function fetchValidationCycles(): Promise<ValidatorCycle[]> {
-  return fetchJson(`${ELECTIONS_API_URL}/getValidationCycles?limit=2&return_participants=true`);
+export function fetchValidationCycles(limit = 2): Promise<ValidatorCycle[]> {
+  return fetchJson(`${ELECTIONS_API_URL}/getValidationCycles?limit=${limit}&return_participants=true`);
 }

@@ -20,6 +20,7 @@ type BaseTransaction = {
 };
 
 type TonTransaction = BaseTransaction & {
+  index: number;
   normalizedAddress: string;
   externalMsgHash?: string;
   msgHash: string;
