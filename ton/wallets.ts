@@ -4,14 +4,15 @@ import { mnemonicToPrivateKey } from '@ton/crypto';
 import type { OpenedContract } from '@ton/ton';
 import { Address, WalletContractV4, WalletContractV5R1 } from '@ton/ton';
 
-import { MAIN_WALLET_MNEMONIC } from '../../config';
+import { MAIN_WALLET_MNEMONIC, MAIN_WALLET_VERSION } from '../../config';
 import { logError, logInfo } from '../util/logs';
 import withCacheAsync from '../util/withCacheAsync';
 import { toBase64Address } from './address';
 import { tonClient } from './client';
 import { WORKCHAIN } from './constants';
 
-export type WalletSlug = 'mainW5' | 'mainV4';
+export type WalletVersion = 'v4R2' | 'W5';
+export type WalletSlug = 'main' | 'mainW5' | 'mainV4';
 
 const bySlug: Record<WalletSlug, {
   keyPair: Promise<KeyPair>;
@@ -20,6 +21,10 @@ const bySlug: Record<WalletSlug, {
   sender?: Sender;
   version?: 'v4R2' | 'W5';
 }> = {
+  main: {
+    keyPair: mnemonicToPrivateKey(MAIN_WALLET_MNEMONIC.split(' ')),
+    version: MAIN_WALLET_VERSION as WalletVersion,
+  },
   mainW5: {
     keyPair: mnemonicToPrivateKey(MAIN_WALLET_MNEMONIC.split(' ')),
     version: 'W5',
