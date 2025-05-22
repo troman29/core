@@ -1,4 +1,4 @@
-import { ELECTIONS_API_URL } from '../../../config';
+import { ELECTIONS_API_URL } from '../../config';
 import { fetchJson } from '../../util/fetch';
 
 type Validator = {

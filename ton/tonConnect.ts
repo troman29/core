@@ -5,7 +5,7 @@ import { isWalletInfoRemote, WalletsListManager } from '@tonconnect/sdk';
 import { Buffer } from 'buffer';
 import { sign } from 'tweetnacl';
 
-import { TON_CONNECT_DOMAINS } from '../../config';
+import { TON_CONNECT_DOMAINS } from '../config';
 import { DAY } from '../util/constants';
 import { buildCollectionByKey, pick } from '../util/iteratees';
 import { redis } from '../util/redis';

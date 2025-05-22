@@ -4,7 +4,7 @@ import { validationResult } from 'express-validator';
 import { JSONRPCErrorException } from 'json-rpc-2.0';
 import os from 'node:os';
 
-import { DEBUG } from '../../config';
+import { DEBUG } from '../config';
 import { HttpError } from './errors';
 
 export type RequestHandler = (req: Request, res: Response, next: NextFunction) => any;

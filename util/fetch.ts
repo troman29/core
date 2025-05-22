@@ -1,4 +1,4 @@
-import { ERROR_PAUSE, RETRIES, TIMEOUT } from '../../config';
+import { ERROR_PAUSE, RETRIES, TIMEOUT } from '../config';
 import { HttpError } from './errors';
 import { logDebug } from './logs';
 import { pause } from './schedulers';

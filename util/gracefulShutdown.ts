@@ -1,4 +1,4 @@
-import { DEBUG_MORE } from '../../config';
+import { DEBUG_MORE } from '../config';
 import { logError } from './logs';
 import { pause } from './schedulers';
 

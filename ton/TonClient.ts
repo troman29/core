@@ -3,7 +3,7 @@ import axiosRetry from 'axios-retry';
 import type { TonClientParameters } from '@ton/ton/dist/client/TonClient';
 import { TonClient as TonCoreClient } from '@ton/ton/dist/client/TonClient';
 
-import { ERROR_PAUSE, RETRIES } from '../../config';
+import { ERROR_PAUSE, RETRIES } from '../config';
 import { fetchWithRetry } from '../util/fetch';
 import { logDebug } from '../util/logs';
 

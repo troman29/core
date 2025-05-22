@@ -5,7 +5,7 @@ import {
   TON_API_KEY,
   TON_API_URL,
   TON_API_V4_URL,
-} from '../../config';
+} from '../config';
 
 import { TonClient } from './TonClient';
 

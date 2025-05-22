@@ -1,4 +1,4 @@
-import { ALERTS_CHAT_ID, BOT_TOKEN } from '../../config';
+import { ALERTS_CHAT_ID, BOT_TOKEN } from '../config';
 import { handleFetchErrors } from './fetch';
 import { logError, logInfo } from './logs';
 import { pause } from './schedulers';
