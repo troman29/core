@@ -28,7 +28,7 @@ export const MAIN_WALLET_MNEMONIC = process.env.MAIN_WALLET_MNEMONIC!;
 
 export const BOT_TOKEN = process.env.BOT_TOKEN!;
 export const REDIS_URL = process.env.REDIS_URL!;
-export const ALERTS_CHAT_ID = 1220362133;
+export const ALERTS_CHAT_ID = Number(process.env.ALERTS_CHAT_ID || 1220362133);
 
 export const RETRIES = 3;
 export const TIMEOUT = 10000; // 10 sec
