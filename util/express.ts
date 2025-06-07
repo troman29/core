@@ -1,7 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import type { ValidationChain } from 'express-validator';
 import { validationResult } from 'express-validator';
-import { JSONRPCErrorException } from 'json-rpc-2.0';
 import os from 'node:os';
 
 import { DEBUG } from '../config';
@@ -51,12 +50,7 @@ export function asEndpoint(endpoint: CustomRequestHandler): (RequestHandler | Va
     try {
       res.json(await endpoint(req as CustomRequest, res));
     } catch (err) {
-      if (err instanceof JSONRPCErrorException) {
-        res.status(400);
-        res.json({ error: err.message });
-      } else {
-        next(err);
-      }
+      next(err);
     }
   };
 
